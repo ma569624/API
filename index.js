@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const connectDB = require("./db/connect")
 
+const multer = require('multer');
 const PORT = process.env.PORT || 5000 ;
 
 app.use((req, res, next) => {
@@ -11,15 +12,40 @@ app.use((req, res, next) => {
     next();
   });
 
-const router = require('./routes/products')
+const router = require('./routes/products');
+const homerouter = require('./routes/homeroute');
+
 
 app.get('/',  (req, res) => {
     res.send("I am live");
 });
 
+app.use("/api/products", router);
+app.use("/api/home", homerouter);
+
+app.use('/profile', express.static('upload/images'));
 //middleware
 
-app.use("/api/products", router);
+// Set up multer to handle form data
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+app.post('/api/products', upload.single('image'), (req, res) => {
+    // Access form fields and uploaded files using req.body and req.file
+    const productName = req.body.name;
+    const productPrice = req.body.price;
+    const productImage = req.file.buffer; // Use req.file.buffer to access the file buffer
+  
+    // Perform product creation logic (e.g., save to database)
+    // For demonstration purposes, we'll just log the details
+    console.log('Product Name:', productName);
+    console.log('Product Price:', productPrice);
+    console.log('Product Image Size:', productImage.length);
+  
+    // Respond with a success message
+    res.json({ message: 'Product created successfully' });
+  });
+
 
 const start = async () => {
     try {
