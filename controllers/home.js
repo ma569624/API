@@ -6,12 +6,13 @@ const getHomeBanner = async (req, res) => {
 };
 
 const postHomeBanner = async (req, res) => { 
-    const imgurl = req.file.buffer;
+    const imgurl = `http://localhost:5000/profile/${req.file.filename}`;
     const subheading = req.body.subheading;
     const heading = req.body.heading;
     const shortdesc = req.body.shortdesc;
 
-    res.status(200).json({ message: 'Banner created successfully' });
+    const data = {imgurl, subheading, heading, shortdesc}
+    res.status(200).json({ message: 'Banner created successfully', data });
 }
 
 
