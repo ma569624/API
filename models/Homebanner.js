@@ -21,5 +21,6 @@ const HomeBannerSchema = new mongoose.Schema({
     }
 })
 
+const HomeBanner = mongoose.model("HomeBanner", HomeBannerSchema);
 
-module.exports = mongoose.model("HomeBanner", HomeBannerSchema);
+module.exports = HomeBanner;
