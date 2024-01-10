@@ -27,28 +27,5 @@ const postHomeBanner = async (req, res) => {
     res.status(200).json({ message: 'Banner created successfully', data });
 }
 
-const EditHomeBanner = async (req, res) => {
-    const productId = req.params.id;
-    try {
-        // Use updateOne to update a document by its ID
-        const result = await HomeBanner.updateOne({ _id: productId }, { $set: req.body });
 
-        // Check if the product was found and updated
-        if (result.nModified === 0) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
-
-        // Respond with a success message
-        res.json({ message: 'Product updated successfully' });
-    } catch (error) {
-        console.error('Error updating product:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-}
-const DeleteHomeBanner = async (req, res) => {
-
-}
-
-
-
-module.exports = { getHomeBanner, postHomeBanner, EditHomeBanner, DeleteHomeBanner };
+module.exports = postHomeBanner;
