@@ -28,22 +28,45 @@ const postHomeBanner = async (req, res) => {
 }
 
 const EditHomeBanner = async (req, res) => {
-    const productId = req.params.id;
+    // const productId = req.params.id;
+    // try {
+    //     // Use updateOne to update a document by its ID
+    //     const result = await HomeBanner.updateOne({ _id: productId }, { $set: req.body });
+
+    //     // Check if the product was found and updated
+    //     if (result.nModified === 0) {
+    //         return res.status(404).json({ error: 'Product not found' });
+    //     }
+
+    //     // Respond with a success message
+    //     res.json({ message: 'Product updated successfully' });
+    // } catch (error) {
+    //     console.error('Error updating product:', error);
+    //     res.status(500).json({ error: 'Internal Server Error' });
+    // }
+
+
     try {
-        // Use updateOne to update a document by its ID
-        const result = await HomeBanner.updateOne({ _id: productId }, { $set: req.body });
+        const imgurl = `http://localhost:5000/profile/${req.file.filename}`;
+        const subheading = req.body.subheading;
+        const heading = req.body.heading;
+        const shortdesc = req.body.shortdesc;
 
-        // Check if the product was found and updated
-        if (result.nModified === 0) {
-            return res.status(404).json({ error: 'Product not found' });
-        }
+        const data = { imgurl, subheading, heading, shortdesc }
 
-        // Respond with a success message
-        res.json({ message: 'Product updated successfully' });
-    } catch (error) {
-        console.error('Error updating product:', error);
+        const itemId = req.params.id;
+        console.log(itemId);
+        // const updateData = req.body;
+        console.log(req.body);
+        const updatedItem = await HomeBanner.findByIdAndUpdate(itemId, data, {
+          new: true, // return the modified document rather than the original
+        });
+    
+        res.json(updatedItem);
+      } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
-    }
+      }
 }
 const DeleteHomeBanner = async (req, res) => {
 
