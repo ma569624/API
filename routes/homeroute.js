@@ -22,7 +22,7 @@ const upload = multer({
 })
 
 
-homerouter.route('/banner').post( upload.single('profile'), postHomeBanner);
+homerouter.route('/banner').post(upload.single('profile'), postHomeBanner);
 homerouter.route('/banner').get(getHomeBanner);
 homerouter.route('/banner/:id').put( upload.single('profile'), EditHomeBanner);
 homerouter.route('/banner/:id').delete(DeleteHomeBanner);
