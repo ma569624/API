@@ -1,8 +1,6 @@
 const mongoose = require("mongoose")
 
 const HomeBannerSchema = new mongoose.Schema({
-
-    
     imgurl: {
         type: String,
         required: true,
@@ -20,7 +18,22 @@ const HomeBannerSchema = new mongoose.Schema({
         required: true,
     }
 })
+const FeatureSchema = new mongoose.Schema({
+    imgurl: {
+        type: String,
+        required: true,
+    },
+    heading: {
+        type: String,
+        required: true,
+    },
+    shortdesc: {
+        type: String,
+        required: true,
+    }
+})
 
 const HomeBanner = mongoose.model("HomeBanner", HomeBannerSchema);
+const Feature = mongoose.model("Feature", FeatureSchema);
 
-module.exports = HomeBanner;
+module.exports = {HomeBanner, Feature};
