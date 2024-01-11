@@ -1,11 +1,12 @@
-const HomeBanner = require('../models/Homebanner')
+const { HomeBanner } = require('../models/Homebanner')
 const uri = "mongodb+srv://manishfrontenddeveloper:HelloManish2025@cluster12.keyzrxr.mongodb.net/Cluster12?retryWrites=true&w=majority";
 const { MongoClient } = require('mongodb');
 const Helper = require('./helper/Helper');
-
+const express = require('express');
+const mongoose = require('mongoose');
 
 const getHomeBanner = async (req, res) => {
-    const mydata = await HomeBanner.find(req.query);
+    const mydata = await HomeBanner.find();
     res.status(200).json({ mydata });
 };
 
