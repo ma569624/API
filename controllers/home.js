@@ -1,9 +1,7 @@
-const { HomeBanner } = require('../models/Homebanner')
-const uri = "mongodb+srv://manishfrontenddeveloper:HelloManish2025@cluster12.keyzrxr.mongodb.net/Cluster12?retryWrites=true&w=majority";
+const { HomeBanner } = require('../models/Home')
+const uri = process.env.URI;
 const { MongoClient } = require('mongodb');
-const Helper = require('./helper/Helper');
-const express = require('express');
-const mongoose = require('mongoose');
+const {BannerHelper} = require('./helper/Helper');
 
 const getHomeBanner = async (req, res) => {
     const mydata = await HomeBanner.find();
@@ -19,7 +17,7 @@ const postHomeBanner = async (req, res) => {
     const collection = database.collection('homebanners');
 
     // Insert the document into the collection
-    const data = Helper(req);
+    const data = BannerHelper(req);
     const result = await collection.insertOne(data);
     console.log('Inserted homebanner with ID:', result.insertedId);
     res.status(200).json({ message: 'Banner created successfully', data });
@@ -28,7 +26,7 @@ const postHomeBanner = async (req, res) => {
 const EditHomeBanner = async (req, res) => {
     
     try {
-        const data = Helper(req);
+        const data = BannerHelper(req);
         const itemId = req.params.id;
         const updatedItem = await HomeBanner.findByIdAndUpdate(itemId, data, {
             new: true, // return the modified document rather than the original

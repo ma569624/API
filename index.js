@@ -1,9 +1,12 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const connectDB = require("./db/connect")
 const homerouter = require('./routes/homeroute');
 const PORT = process.env.PORT || 5000;
 const host = process.env.HOST || 'localhost';
+
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

@@ -34,6 +34,6 @@ const FeatureSchema = new mongoose.Schema({
 })
 
 const HomeBanner = mongoose.model("HomeBanner", HomeBannerSchema);
-const Feature = mongoose.model("Feature", FeatureSchema);
+const Feature = mongoose.model("feature", FeatureSchema);
 
 module.exports = {HomeBanner, Feature};
