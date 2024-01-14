@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 const {BannerHelper} = require('./helper/Helper');
 
 const getHomeBanner = async (req, res) => {
-    const mydata = await HomeBanner.find();
+    const mydata = await HomeBanner.find(req.query);
     res.status(200).json({ mydata });
 };
 
