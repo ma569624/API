@@ -2,7 +2,7 @@ const host = process.env.HOST;
 const port = process.env.PORT;
 
 const BannerHelper = (req) => {
-    const imgurl = `http://${host}:${port}/image/${req.file.filename}`;
+    const imgurl = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;
     const subheading = req.body.subheading;
     const heading = req.body.heading;
     const shortdesc = req.body.shortdesc;
