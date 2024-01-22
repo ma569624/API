@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const getFeature = async (req, res) => {
     try {
         const products = await Feature.find();
-        res.json({ result: products });
+        res.json(products);
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).json({ error: 'Internal Server Error' });
