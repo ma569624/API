@@ -5,7 +5,7 @@ const {BannerHelper} = require('./helper/Helper');
 
 const getHomeBanner = async (req, res) => {
     const mydata = await HomeBanner.find(req.query);
-    res.status(200).json({ mydata });
+    res.status(200).json(mydata);
 };
 
 const postHomeBanner = async (req, res) => {
