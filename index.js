@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 require('dotenv').config();
 const app = express();
 const connectDB = require("./db/connect")
@@ -10,7 +11,8 @@ const aboutroute = require('./routes/aboutroute');
 const TestimonialRouter = require('./routes/Testimonialsroute');
 const workRouter = require('./routes/workprocess');
 
-// app.use(express.json())
+app.use(express.json())
+app.use(cors());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
