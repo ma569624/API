@@ -10,7 +10,7 @@ const BannerHelper = (req) => {
     return { imgurl, subheading, heading, shortdesc };
 }
 const FeaturHelper = (req) => {
-    const imgurl = `http://${host}:${port}/image/${req.file.filename}`;
+    const imgurl = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;
     const heading = req.body.heading;
     const shortdesc = req.body.shortdesc;
 
@@ -19,8 +19,8 @@ const FeaturHelper = (req) => {
 const ServiceHelper = (req) => {
     // let home_img = null;
     if (req.files && req.files.length > 0) {
-        var home_img = `http://${host}:${port}/image/${req.files[0].filename}`;
-        var detail_img = `http://${host}:${port}/image/${req.files[1].filename}`;
+        var home_img = `https://api-production-cb70.up.railway.app/image/${req.files[0].filename}`;
+        var detail_img = `https://api-production-cb70.up.railway.app/image/${req.files[1].filename}`;
     } 
 
     const home_icon = req.body.home_icon;
@@ -32,7 +32,7 @@ const ServiceHelper = (req) => {
     return { home_img, home_icon, redirect_link, desc, detail_img, heading, short };
 }
 const AboutHelper = (req) => {
-    const Image = `http://${host}:${port}/image/${req.file.filename}`;
+    const Image = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;
     const subheading = req.body.subheading;
    const heading = req.body.heading;
    const desc = req.body.desc;
@@ -40,5 +40,21 @@ const AboutHelper = (req) => {
    return { Image, subheading, heading, desc };
     
 }
+const testimonialHelper = (req) => {
+    const image = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;
+    const name = req.body.name;
+    const comment = req.body.comment;
+    const profesion = req.body.profesion;
 
-module.exports = { BannerHelper, FeaturHelper, ServiceHelper, AboutHelper };
+    return { image, name, comment, profesion };
+}
+const workHelper = (req) => {
+    // const image = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;
+    const heading = req.body.heading;
+    const count = req.body.count;
+    const desc = req.body.desc;
+
+    return { count, heading, desc };
+}
+
+module.exports = { BannerHelper, FeaturHelper, ServiceHelper, AboutHelper, testimonialHelper, workHelper };
