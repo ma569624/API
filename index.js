@@ -11,14 +11,14 @@ const aboutroute = require('./routes/aboutroute');
 const TestimonialRouter = require('./routes/Testimonialsroute');
 const workRouter = require('./routes/workprocess');
 
-app.use(express.json())
+app.use(express.json());
 app.use(cors());
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     next();
+// });
 
 app.get('/', (req, res) => {
     res.send("I am live");
