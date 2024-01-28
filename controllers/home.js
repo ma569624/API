@@ -17,7 +17,8 @@ const postHomeBanner = async (req, res) => {
     const collection = database.collection('homebanners');
 
     // Insert the document into the collection
-    const data = BannerHelper(req);
+    // const data = BannerHelper(req);
+    const data = req.body;
     const result = await collection.insertOne(data);
     console.log('Inserted homebanner with ID:', result.insertedId);
     res.status(200).json({ message: 'Banner created successfully', data });
