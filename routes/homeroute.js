@@ -8,8 +8,8 @@ const upload = require("../middleware/uploader");
 
 
 router.route('/banner').get(getHomeBanner);
-router.route('/banner').post(upload.single('profile'), postHomeBanner);
-router.route('/banner/:id').put(upload.single('profile'), EditHomeBanner);
+router.route('/banner').post(upload.single('file'), postHomeBanner);
+router.route('/banner/:id').put(upload.single('file'), EditHomeBanner);
 router.route('/banner/:id').delete(DeleteHomeBanner);
 
 

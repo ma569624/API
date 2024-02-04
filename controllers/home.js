@@ -1,7 +1,8 @@
 const { HomeBanner } = require('../models/Home')
 const uri = process.env.URI;
 const { MongoClient } = require('mongodb');
-const {BannerHelper} = require('./helper/Helper');
+const { BannerHelper } = require('./helper/Helper');
+const path = require('path');
 
 const getHomeBanner = async (req, res) => {
     const mydata = await HomeBanner.find(req.query);
@@ -9,7 +10,7 @@ const getHomeBanner = async (req, res) => {
 };
 
 const postHomeBanner = async (req, res) => {
-    
+
     const client = new MongoClient(uri);
 
     // Access the database and collection
@@ -17,15 +18,13 @@ const postHomeBanner = async (req, res) => {
     const collection = database.collection('homebanners');
 
     // Insert the document into the collection
-    // const data = BannerHelper(req);
-    const data = req.body;
+    const data = BannerHelper(req);
     const result = await collection.insertOne(data);
     console.log('Inserted homebanner with ID:', result.insertedId);
     res.status(200).json({ message: 'Banner created successfully', data });
 }
 
 const EditHomeBanner = async (req, res) => {
-    
     try {
         const data = BannerHelper(req);
         const itemId = req.params.id;
@@ -33,11 +32,15 @@ const EditHomeBanner = async (req, res) => {
             new: true, // return the modified document rather than the original
         });
         res.json(updatedItem);
-    } catch (error) {
+    }
+
+    catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+
 }
+
 const DeleteHomeBanner = async (req, res) => {
     const Id = req.params.id;
 

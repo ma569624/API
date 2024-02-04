@@ -1,13 +1,14 @@
 const host = process.env.HOST;
 const port = process.env.PORT;
+const path = require("path");
 
 const BannerHelper = (req) => {
-    const imgurl = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;
+    // const banner = req.file.path;
+    const banner = `http://localhost:5000/image/${req.file.filename}`;
     const subheading = req.body.subheading;
     const heading = req.body.heading;
     const shortdesc = req.body.shortdesc;
-
-    return { imgurl, subheading, heading, shortdesc };
+    return { banner, subheading, heading, shortdesc };
 }
 const FeaturHelper = (req) => {
     const imgurl = `https://api-production-cb70.up.railway.app/image/${req.file.filename}`;

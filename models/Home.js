@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const HomeBannerSchema = new mongoose.Schema({
-    imgurl: {
+    banner: {
         type: String,
         required: true,
     },
